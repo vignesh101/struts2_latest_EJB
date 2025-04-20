@@ -1,0 +1,23 @@
+target/
+.idea/
+*.iml
+*.iws
+*.ipr
+.classpath
+.project
+.settings/
+.factorypath
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.loadpath
+.recommenders
+.DS_Store
+
+# Sensitive configuration files
+azuread-ejb/src/main/resources/azuread.properties

@@ -1,0 +1,8 @@
+azure.ad.client-id=YOUR_CLIENT_ID
+azure.ad.client-secret=YOUR_CLIENT_SECRET
+azure.ad.tenant-id=YOUR_TENANT_ID
+azure.ad.issuer-uri=https://login.microsoftonline.com/YOUR_TENANT_ID
+azure.ad.logout-uri=https://login.microsoftonline.com/YOUR_TENANT_ID/oauth2/logout
+azure.ad.post-logout-redirect-uri=http://localhost:8080/struts2app/auth/callback
+azure.ad.scopes=User.Read,profile,email,openid
+azure.ad.redirect-uri=http://localhost:8080/struts2app

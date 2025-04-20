@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+    <constant name="struts.devMode" value="false" />
+    <constant name="struts.ui.theme" value="simple" />
+    <constant name="struts.action.extension" value="," />
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.mapper.action.prefix.enabled" value="true" />
+    <constant name="struts.convention.result.path" value="/WEB-INF/pages/" />
+    
+    <package name="default" namespace="/" extends="struts-default">
+        <!-- Authentication Interceptor -->
+        <interceptors>
+            <interceptor name="authentication" class="com.azuread.integration.interceptor.AuthenticationInterceptor" />
+            <interceptor-stack name="authStack">
+                <interceptor-ref name="defaultStack" />
+                <interceptor-ref name="authentication" />
+            </interceptor-stack>
+        </interceptors>
+        
+        <default-interceptor-ref name="authStack" />
+        
+        <!-- Default Action -->
+        <default-action-ref name="home" />
+        
+        <!-- Error Result -->
+        <global-results>
+            <result name="error" type="redirectAction">error</result>
+            <result name="login" type="redirectAction">login</result>
+        </global-results>
+        
+        <!-- Home Page (Protected) -->
+        <action name="home" class="com.azuread.integration.action.HomeAction">
+            <result name="success">/WEB-INF/pages/home.jsp</result>
+        </action>
+        
+        <!-- Login Action -->
+        <action name="login" class="com.azuread.integration.action.LoginAction">
+            <result name="error">/WEB-INF/pages/error.jsp</result>
+            <interceptor-ref name="defaultStack" />
+        </action>
+        
+        <!-- Callback Action -->
+        <action name="auth/callback" class="com.azuread.integration.action.CallbackAction">
+            <result name="success" type="redirectAction">home</result>
+            <result name="error" type="redirectAction">error</result>
+            <interceptor-ref name="defaultStack" />
+        </action>
+        
+        <!-- Logout Action -->
+        <action name="logout" class="com.azuread.integration.action.LogoutAction">
+            <result name="error" type="redirectAction">error</result>
+            <interceptor-ref name="defaultStack" />
+        </action>
+        
+        <!-- Error Action -->
+        <action name="error" class="com.azuread.integration.action.ErrorAction">
+            <result name="success">/WEB-INF/pages/error.jsp</result>
+            <interceptor-ref name="defaultStack" />
+        </action>
+    </package>
+</struts>

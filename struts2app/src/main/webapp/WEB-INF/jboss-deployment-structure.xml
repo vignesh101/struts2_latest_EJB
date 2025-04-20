@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.2">
+    <deployment>
+        <dependencies>
+            <!-- Add dependency on MSAL4J module -->
+            <module name="com.microsoft.azure.msal4j" export="true"/>
+            <!-- Add dependency on EJB client -->
+            <module name="javax.ejb.api" export="true"/>
+        </dependencies>
+        <exclusions>
+            <!-- Exclude competing Log4j implementations -->
+            <module name="org.apache.log4j" />
+            <module name="org.apache.logging.log4j.api" />
+            <module name="org.apache.logging.log4j.core" />
+            <module name="org.jboss.logging.jul-to-slf4j-stub" />
+        </exclusions>
+    </deployment>
+</jboss-deployment-structure>
